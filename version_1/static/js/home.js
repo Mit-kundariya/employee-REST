@@ -105,16 +105,16 @@ ns.view = (function() {
     return {
         reset: function() {
         	$empid.val('').focus();
-            $lname.val('');
             $fname.val('');
+            $lname.val('');
             $dob.val('');
             $address_type.val('');
             $address.val('');
         },
         update_editor: function(empid,fname, lname,dob,address_type,address) {
         	$empid.val(empid).focus();
-            $lname.val(fname);
-            $fname.val(lname);
+            $fname.val(fname);
+            $lname.val(lname);
             $dob.val(dob);
             $address_type.val(address_type);
             $address.val(address);
