@@ -95,18 +95,13 @@ def update_employee(emp_details,address_details=None):
         conn = sqlite3.connect('EMPLOYEE.db')
         c = conn.cursor()
         if address_details == None:
-            c.execute('''UPDATE EMPLOYEE_DETAILS SET  employee_id = ?
-                         ,first_name = ?, last_name = ?, dob = ?''',emp_details)
+            pass
         else:
             address_id = c.execute("SELECT address_id FROM EMPLOYEE_DETAILS where employee_id = ?",(emp_details[0],))
-            address_details.append(address_id)
+            address_details.append(list(address_id)[0][0])
             c.execute("UPDATE ADDRESS_DETAILS set address_type = ?, address = ? WHERE address_id = ?",address_details)
+        c.execute('''UPDATE EMPLOYEE_DETAILS SET first_name = ?, last_name = ?, dob = ? WHERE employee_id = ?''',emp_details[1:]+[emp_details[0]])
         conn.commit()
     
     finally:
         conn.close()
-
-# insert_employee([748158,'mit','kundariya','1995-01-19'], ['permanent','abc'])
-# update_employee([748157,'mit','kmn','1995-01-19'])
-# print(select_emp(748157))
-# delete_employee(748158)
