@@ -1,0 +1,167 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /employee:
+    get:
+      operationId: employee.read_all
+      tags:
+        - employee
+      summary: Read the entire list of employee
+      description: Read the list of employee
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of employee to get from employee
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering employee
+          required: false
+      responses:
+        200:
+          description: Successfully read employee list operation
+          schema:
+            type: array
+            items:
+              properties:
+                empid:
+                  type: string
+                fname:
+                  type: string
+                lname:
+                  type: string
+                dob:
+                  type: string
+                address_type:
+                  type: string
+                address:
+                  type: string
+                
+    post:
+      operationId: employee.create
+      tags:
+        - employee
+      summary: Create a person and add it to the employee list
+      description: Create a new person in the employee list
+      parameters:
+        - name: person
+          in: body
+          description: Person to create
+          required: True
+          schema:
+            type: object
+            properties:
+              empid:
+                type: string
+                description: employee number of person to create
+              fname:
+                type: string
+                description: First name of person to create
+              lname:
+                type: string
+                description: Last name of person to create
+              dob:
+                type: string
+                description: date of birth of person to create
+              address_type:
+                type: string
+                description: address type of person to create
+              address:
+                type: string
+                description: address of person to create
+            
+      responses:
+        201:
+          description: Successfully created person in list
+
+  /employee/{empid}:
+    get:
+      operationId: employee.read_one
+      tags:
+        - employee
+      summary: Read one person from the employee list
+      description: Read one person from the employee list
+      parameters:
+        - name: empid
+          in: path
+          description: employee id of the person to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read person from employee list operation
+          schema:
+            properties:
+              empid:
+                type: string
+              fname:
+                type: string
+              lname:
+                type: string
+              dob:
+                type: string
+              address_type:
+                type: string
+              address:
+                type: string
+
+    put:
+      operationId: employee.update
+      tags:
+        - employee
+      summary: Update a person in the employee list
+      description: Update a person in the employee list
+      parameters:
+        - name: empid
+          in: path
+          description: Last name of the person to update in the list
+          type: string
+          required: True
+        - name: person
+          in: body
+          schema:
+            type: object
+            properties:
+              empid:
+                type: string
+              fname:
+                type: string
+              lname:
+                type: string
+              dob:
+                type: string
+              address_type:
+                type: string
+              address:
+                type: string
+      responses:
+        200:
+          description: Successfully updated person in employee list
+
+    delete:
+      operationId: employee.delete
+      tags:
+        - employee
+      summary: Delete a person from the employee list
+      description: Delete a person
+      parameters:
+        - name: empid
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully deleted a person from employee list
