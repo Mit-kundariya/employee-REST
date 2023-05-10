@@ -10,8 +10,8 @@ def read_all():
     employee  = select_all()
     return [{
             "empid" :person[0],
-            "lname": person[1],
-            "fname": person[2],
+            "fname": person[1],
+            "lname": person[2],
             "dob": person[3],
             "address_type":person[4],
             "address":person[5]
@@ -29,8 +29,8 @@ def read_one(empid):
         )
     employee = {
             "empid" :person[0][0],
-            "lname": person[0][1],
-            "fname": person[0][2],
+            "fname": person[0][1],
+            "lname": person[0][2],
             "dob": person[0][3],
             "address_type":person[0][4],
             "address":person[0][5]
@@ -51,8 +51,8 @@ def create(person):
     if emp_flag == []  and empid is not None:
         employee = {
             "empid" :empid,
+			"fname": fname,
             "lname": lname,
-            "fname": fname,
             "dob": dob,
             "address_type":address_type,
             "address":address
@@ -79,8 +79,8 @@ def update(empid, person):
     if emp_flag != []  and empid is not None:
         employee = {
             "empid" :empid,
+			"fname": fname,
             "lname": lname,
-            "fname": fname,
             "dob": dob,
             "address_type":address_type,
             "address":address
