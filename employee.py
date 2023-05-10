@@ -51,7 +51,7 @@ def create(person):
     if emp_flag == []  and empid is not None:
         employee = {
             "empid" :empid,
-			"fname": fname,
+	    "fname": fname,
             "lname": lname,
             "dob": dob,
             "address_type":address_type,
@@ -79,7 +79,7 @@ def update(empid, person):
     if emp_flag != []  and empid is not None:
         employee = {
             "empid" :empid,
-			"fname": fname,
+	    "fname": fname,
             "lname": lname,
             "dob": dob,
             "address_type":address_type,
